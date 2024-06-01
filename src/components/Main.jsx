@@ -7,25 +7,17 @@ import { DateTime } from "luxon";
 const Main = () => {
   const url = "https://geo.ipify.org/api/v2/country,city";
   const countryUrl = "https://countryapi.io/api/all";
-  const [ipData, setIpData] = useState(
-    JSON.parse(localStorage.getItem("ipData")) || {}
-  );
+  const [ipData, setIpData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCountry, setIsLoadingCountry] = useState(false);
 
   useEffect(() => {
-    if (
-      Object.keys(ipData).length <= 0 ||
-      Date.now() - ipData.lastUpdatedTime > 0.5 * 60 * 1000
-    ) {
+    if (Object.keys(ipData).length <= 0) {
+      setIsLoading(true);
       getIP();
       return;
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("ipData", JSON.stringify(ipData));
-  }, [ipData]);
 
   const getIP = async () => {
     setIsLoading(true);
