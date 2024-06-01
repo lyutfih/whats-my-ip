@@ -1,9 +1,9 @@
 import axios from "axios";
-const url = 'https://restcountries.com/v3.1/alpha/';
+const url = 'https://countryapi.io/api/all?apikey=OtJmLuOO118IZ7BjC4nbXaRNTu3MqXo3ueB400B1';
 
-export const fetchCountry = async (country) => {
+export const fetchCountry = async () => {
     try {
-       const requestCountry = axios.get(`${url}/${country}`);
+       const requestCountry = axios.get(`${url}`);
 
        const [responseCountry] = await Promise.all([requestCountry])
        
